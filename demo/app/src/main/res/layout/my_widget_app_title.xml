@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myapptitle_rootview"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_title_height"
+    android:background="@color/theme_gray"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/myapptitle_leftbutton_wraper"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/app_title_height"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/widget_titlebar_item_color"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="10.0dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/myapptitle_leftbutton_image"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5.0dp" />
+
+        <TextView
+            android:id="@+id/myapptitle_LeftTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="8.0dp"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="14.0sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/myapptitle_leftbutton2_wraper"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/app_title_height"
+        android:layout_toRightOf="@+id/myapptitle_leftbutton_wraper"
+        android:background="@drawable/widget_titlebar_item_color"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:paddingLeft="6.0dp"
+        android:paddingRight="12.0dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/myapptitle_leftbutton2_inner_wraper"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@null"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/myapptitle_leftbutton2_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="2.0dp" />
+
+            <TextView
+                android:id="@+id/myapptitle_leftbutton2_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawablePadding="8.0dp"
+                android:gravity="center"
+                android:textColor="#ffffffff"
+                android:textSize="14.0sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/myapptitle_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/app_title_height"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:drawablePadding="8.0dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxEms="8"
+        android:singleLine="true"
+        android:textColor="#ffffffff"
+        android:textSize="20.0sp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/myapptitle_Divider1_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_toLeftOf="@+id/myapptitle_RightButtonWraper"
+        android:src="@drawable/widget_titlebar_divider"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/myapptitle_RightButtonWraper"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/app_title_height"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/widget_titlebar_item_color"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:paddingLeft="12.0dp"
+        android:paddingRight="15.0dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/myapptitle_Rightbutton_image"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/myapptitle_RightButton_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="5.0dp"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="14.0sp" />
+    </LinearLayout>
+
+</RelativeLayout>

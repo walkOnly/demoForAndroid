@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--theme colors-->
+
+    <color name="primary">#43413D</color>
+    <color name="primary_dark">#2D2D2D</color>
+    <color name="accent">#FCD000</color>
+    <color name="accent_dark">#FC9E00</color>
+
+    <!--basic colors-->
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_deep">#aaFFFFFF</color>
+    <color name="white_half">#78FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="gray_shallow">#22000000</color>
+    <color name="gray_medium">#77000000</color>
+    <color name="gray_deep">#aa000000</color>
+    <color name="gray_theme">#F0F0F0</color>
+    <color name="gray_79">#797c85</color>
+    <!--colors from https://www.google.com/design/spec/style/color.html-->
+
+    <color name="red_500">#F44336</color>
+    <color name="red_600">#E53935</color>
+
+    <color name="pink_500">#E91E63</color>
+    <color name="yellow_500">#FFEB3B</color>
+    <color name="yellow_252">#FCD000</color>
+    <color name="deep_orange_500">#FF5722</color>
+
+    <color name="blue_200">#90CAF9</color>
+    <color name="blue_300">#64B5F6</color>
+    <color name="blue_400">#42A5F5</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="blue_600">#1E88E5</color>
+    <color name="blue_a200">#448AFF</color>
+    <color name="blue_a400">#2979FF</color>
+
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#EEEEEE</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_400">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_600">#757575</color>
+    <color name="grey_700">#616161</color>
+    <color name="grey_800">#424242</color>
+    <color name="grey_900">#212121</color>
+    <color name="grey_363636">#242424</color>
+    <color name="grey_fofofo">#f0f0f0</color>
+    <color name="grey_text">#797C85</color>
+    <color name="grey_626166">#3E3D42</color>
+
+    <!--functional colors-->
+
+    <color name="divider_background_light">#1A000000</color>
+    <color name="divider_background_dark">#12FFFFFF</color>
+    <color name="text_primary">@color/grey_800</color>
+    <color name="text_secondary">@color/grey_600</color>
+    <color name="text_third">@color/grey_500</color>
+    <color name="text_weak">@color/grey_400</color>
+    <color name="text_primary_reverse">@color/white</color>
+    <color name="text_secondary_reverse">@color/white_deep</color>
+    <color name="text_third_reverse">@color/white_half</color>
+    <color name="big_button_text">#806A00</color>
+    <color name="another_accent">#49C120</color>
+    <color name="drawer_icon">@color/primary</color>
+
+    <color name="titlebar_item_color_pressed">#20000000</color>
+    <!--bill_title color-->
+    <color name="theme_gray">#343339</color>
+    <!--bill_title color-->
+    <color name="theme_yellow">#FCD000</color>
+    <color name="hint_gray">#C6C5CC</color>
+    <color name="btn_pressed">#797C85</color>
+    <color name="text_blue">#007AFF</color>
+    <color name="gray_line">#DCDCDC</color>
+    <color name="text_red">#FF4B00</color>
+
+    <color name="text_black_1">#343339</color>
+
 </resources>
