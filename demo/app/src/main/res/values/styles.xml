@@ -1,9 +1,9 @@
 <resources>
 
     <!--消除app启动时的白屏/黑屏问题-->
-    <!--<style name="Theme.SplashActivity" parent="AppTheme.NoActionBar.FullScreen">-->
-        <!--<item name="android:windowBackground">@drawable/image_splash_version</item>-->
-    <!--</style>-->
+    <style name="Theme.SplashActivity" parent="AppTheme.NoActionBar.FullScreen">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+    </style>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

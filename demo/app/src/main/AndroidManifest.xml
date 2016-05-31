@@ -10,13 +10,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activity.TestActivity">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.FragmentHostActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.MapActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.TestActivity"
+            android:screenOrientation="portrait" />
+
+
+        <!--<activity-->
+            <!--android:name=".activity.WebViewActivity"-->
+            <!--android:launchMode="singleTask"-->
+            <!--android:screenOrientation="portrait" />-->
+
+
+
 
     </application>
 
