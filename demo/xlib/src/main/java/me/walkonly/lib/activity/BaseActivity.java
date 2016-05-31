@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,20 +98,27 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (layoutId == 0)
             throw new IllegalArgumentException("layoutId == 0");
 
-        if (titleId == 0) {
-            setContentView(layoutId);
-            return;
-        } else {
-            LayoutInflater layoutInflater = getLayoutInflater();
-            LinearLayout rootView = (LinearLayout) layoutInflater.inflate(R.layout.activity_base, null);
-            defaultTitleBar = rootView.findViewById(R.id.default_title_bar);
-
-            View clientView = layoutInflater.inflate(layoutId, null);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -1); // MATCH_PARENT
-            rootView.addView(clientView, params);
-
-            setContentView(rootView);
+        // 默认使用系统ActionBar
+        setContentView(layoutId);
+        if (titleId > 0) {
+            ActionBar actionBar = getSupportActionBar();
+            //actionBar.setLogo();
+            actionBar.setTitle(titleId);
         }
+
+//        if (titleId == 0) {
+//            setContentView(layoutId);
+//        } else {
+//            LayoutInflater layoutInflater = getLayoutInflater();
+//            LinearLayout rootView = (LinearLayout) layoutInflater.inflate(R.layout.activity_base, null);
+//            defaultTitleBar = rootView.findViewById(R.id.default_title_bar);
+//
+//            View clientView = layoutInflater.inflate(layoutId, null);
+//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -1); // MATCH_PARENT
+//            rootView.addView(clientView, params);
+//
+//            setContentView(rootView);
+//        }
     }
 
 }
