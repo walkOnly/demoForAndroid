@@ -8,19 +8,32 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.umeng.analytics.MobclickAgent;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import me.walkonly.lib.annotation.ActivityAnnotationConfig;
 import me.walkonly.lib.http.GsonResponseHandler;
 
 public abstract class BaseActivity extends AppCompatActivity {
+
+    private ActivityAnnotationConfig annotationConfig;
 
     private List<GsonResponseHandler> httpResponseHandler = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        annotationConfig = ActivityAnnotationConfig.getConfig(this.getClass());
+        if (annotationConfig != null) {
+            if (annotationConfig.layoutId > 0)
+                setContentView(annotationConfig.layoutId);
+            if (annotationConfig.eventBus)
+                EventBus.getDefault().register(this);
+        }
 
         ButterKnife.bind(this);
     }
@@ -43,7 +56,14 @@ public abstract class BaseActivity extends AppCompatActivity {
             handler.cancel();
         }
         httpResponseHandler.clear();
+
+        if (annotationConfig != null) {
+            if (annotationConfig.eventBus)
+                EventBus.getDefault().unregister(this);
+        }
+
         ButterKnife.unbind(this);
+
         super.onDestroy();
     }
 

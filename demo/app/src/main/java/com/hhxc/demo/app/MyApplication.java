@@ -1,6 +1,6 @@
 package com.hhxc.demo.app;
 
-import me.walkonly.xlib.BaseApplication;
+import me.walkonly.lib.BaseApplication;
 
 public class MyApplication extends BaseApplication {
 

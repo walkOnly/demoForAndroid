@@ -13,6 +13,6 @@ import static java.lang.annotation.ElementType.TYPE;
 @Target(TYPE)
 public @interface C_Activity {
 
-    int value(); // layoutId
+    int value() default 0; // layoutId
 
 }

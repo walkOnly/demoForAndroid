@@ -14,9 +14,9 @@ import com.hhxc.demo.R;
 import com.hhxc.demo.view.MyAppTitle;
 
 import butterknife.Bind;
-import me.walkonly.xlib.activity.BaseActivity;
-import me.walkonly.xlib.util.Utils;
-import me.walkonly.xlib.view.IProgressView;
+import me.walkonly.lib.activity.BaseActivity;
+import me.walkonly.lib.util.Utils;
+import me.walkonly.lib.view.IProgressView;
 
 public class FragmentHostActivity extends BaseActivity implements IProgressView {
     private static final String TAG = "FragmentHostActivity";
