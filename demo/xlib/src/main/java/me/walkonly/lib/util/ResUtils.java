@@ -13,7 +13,7 @@ import me.walkonly.lib.BaseApplication;
 
 public class ResUtils {
 
-    private static final Resources resources = BaseApplication.getContext().getResources();
+    private static final Resources resources = BaseApplication.resources();
 
     private ResUtils() {
     }
