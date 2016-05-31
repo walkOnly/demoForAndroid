@@ -1,4 +1,4 @@
-package me.walkonly.lib.http;
+package com.hhxc.demo.http;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
