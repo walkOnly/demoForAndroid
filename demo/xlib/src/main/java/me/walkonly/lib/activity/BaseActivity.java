@@ -1,4 +1,4 @@
-package me.walkonly.xlib.activity;
+package me.walkonly.lib.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import me.walkonly.xlib.http.GsonResponseHandler;
+import me.walkonly.lib.http.GsonResponseHandler;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     private List<GsonResponseHandler> httpResponseHandler = new ArrayList<>();
 

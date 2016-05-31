@@ -1,4 +1,4 @@
-package me.walkonly.xlib.util;
+package me.walkonly.lib.util;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -20,7 +20,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
-import me.walkonly.xlib.view.ProgressViewHolder;
+import me.walkonly.lib.view.ProgressViewHolder;
 
 public class Utils {
 

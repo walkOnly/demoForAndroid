@@ -1,4 +1,4 @@
-package me.walkonly.xlib.http;
+package me.walkonly.lib.http;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,12 +19,12 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import cz.msebera.android.httpclient.Header;
-import me.walkonly.xlib.Config;
-import me.walkonly.xlib.Constant;
-import me.walkonly.xlib.activity.BaseActivity;
-import me.walkonly.xlib.util.Utils;
-import me.walkonly.xlib.view.IProgressView;
-import me.walkonly.xlib.view.ProgressViewHolder;
+import me.walkonly.lib.Config;
+import me.walkonly.lib.Constant;
+import me.walkonly.lib.activity.BaseActivity;
+import me.walkonly.lib.util.Utils;
+import me.walkonly.lib.view.IProgressView;
+import me.walkonly.lib.view.ProgressViewHolder;
 
 public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
 

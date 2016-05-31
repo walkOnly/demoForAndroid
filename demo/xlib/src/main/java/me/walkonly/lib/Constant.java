@@ -1,4 +1,4 @@
-package me.walkonly.xlib;
+package me.walkonly.lib;
 
 public final class Constant {
 

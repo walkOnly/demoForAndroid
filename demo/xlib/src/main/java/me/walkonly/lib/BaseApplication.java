@@ -1,4 +1,4 @@
-package me.walkonly.xlib;
+package me.walkonly.lib;
 
 import android.app.Application;
 import android.content.Context;

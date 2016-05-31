@@ -1,4 +1,4 @@
-package me.walkonly.xlib.view;
+package me.walkonly.lib.view;
 
 import android.view.View;
 

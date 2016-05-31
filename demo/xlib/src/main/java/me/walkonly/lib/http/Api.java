@@ -1,9 +1,9 @@
-package me.walkonly.xlib.http;
+package me.walkonly.lib.http;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import me.walkonly.xlib.http.HttpClient;
+import me.walkonly.lib.http.HttpClient;
 
 public class Api {
 

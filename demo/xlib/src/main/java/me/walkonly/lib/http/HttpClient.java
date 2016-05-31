@@ -1,4 +1,4 @@
-package me.walkonly.xlib.http;
+package me.walkonly.lib.http;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -10,7 +10,7 @@ import com.loopj.android.http.RequestParams;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.walkonly.xlib.Config;
+import me.walkonly.lib.Config;
 
 public class HttpClient {
     private static final AsyncHttpClient client = new AsyncHttpClient();

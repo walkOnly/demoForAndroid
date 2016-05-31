@@ -1,4 +1,4 @@
-package me.walkonly.xlib.util;
+package me.walkonly.lib.util;
 
 import android.content.res.Resources;
 import android.support.annotation.ColorRes;
@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
-import me.walkonly.xlib.BaseApplication;
+import me.walkonly.lib.BaseApplication;
 
 public class ResUtils {
 

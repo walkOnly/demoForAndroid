@@ -1,4 +1,4 @@
-package me.walkonly.xlib.http;
+package me.walkonly.lib.http;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -6,7 +6,7 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.walkonly.xlib.util.ResUtils;
+import me.walkonly.lib.util.ResUtils;
 
 /**
  * 测试数据，对应的json文件为utf-8编码
