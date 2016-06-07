@@ -15,9 +15,6 @@ public class Api {
      * 支付相关
      ***********************************************************************************/
 
-    // 微信支付统一下单接口地址
-    public static final String GET_PREPARE_ID = "https://api.mch.weixin.qq.com/pay/unifiedorder";
-
     // 微信支付 回调后台接口
     public static final String PAY_NOTIFY_URL_WX = "http://open.hohoxc.com/reserve/wxpay";
 
