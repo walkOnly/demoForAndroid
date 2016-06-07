@@ -2,18 +2,26 @@ package me.walkonly.lib.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
 
-public abstract class BaseAdapterForRecyclerView<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter {
+public abstract class BaseAdapterForRecyclerView<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
     protected Context context;
     protected List<?> dataList;
+    private OnItemClickListener mOnItemClickListener;
 
     public BaseAdapterForRecyclerView(Context context, List<?> dataList) {
         this.context = context;
         this.dataList = dataList;
+    }
+
+    public void updateData(List<?> dataList) {
+        this.dataList = dataList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -23,11 +31,34 @@ public abstract class BaseAdapterForRecyclerView<VH extends RecyclerView.ViewHol
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(context).inflate(getItemLayout(), parent, false);;
+        return onCreateViewHolder2(view);
     }
 
-//    public void setOnItemClickListener(@Nullable OnItemClickListener listener) {
-//        mOnItemClickListener = listener;
-//    }
+    @Override
+    public void onBindViewHolder(final VH viewHolder, final int position) {
+        onBindViewHolder2(viewHolder, position, dataList);
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null)
+                    mOnItemClickListener.onItemClick(viewHolder.itemView, position);
+            }
+        });
+    }
+
+    public abstract int getItemLayout();
+
+    public abstract VH onCreateViewHolder2(View view);
+
+    public abstract void onBindViewHolder2(VH viewHolder, int position, List<?> dataList);
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
+    }
 
 }

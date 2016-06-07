@@ -1,13 +1,14 @@
 package me.walkonly.lib.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import java.util.List;
 
-public abstract class BaseAdapterForListView extends BaseAdapter {
+public abstract class BaseAdapterForListView<VH extends BaseAdapterForListView.ViewHolder> extends BaseAdapter {
 
     protected Context context;
     protected List<?> dataList;
@@ -15,6 +16,11 @@ public abstract class BaseAdapterForListView extends BaseAdapter {
     public BaseAdapterForListView(Context context, List<?> dataList) {
         this.context = context;
         this.dataList = dataList;
+    }
+
+    public void updateData(List<?> dataList) {
+        this.dataList = dataList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -34,25 +40,26 @@ public abstract class BaseAdapterForListView extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = null;
+        VH viewHolder;
 
         if (convertView == null) {
-            viewHolder = onCreateViewHolder(parent, 0);
+            convertView = LayoutInflater.from(context).inflate(getItemLayout(), parent, false);;
+            viewHolder = onCreateViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (VH) convertView.getTag();
         }
 
-        onBindViewHolder(viewHolder, position);
+        onBindViewHolder(viewHolder, position, dataList);
 
-        return viewHolder.itemView;
+        return convertView;
     }
 
-    //@Override
-    public abstract ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType);
+    public abstract int getItemLayout();
 
-    //@Override
-    public abstract void onBindViewHolder(ViewHolder viewHolder, int position);
+    public abstract VH onCreateViewHolder(View view);
+
+    public abstract void onBindViewHolder(VH viewHolder, int position, List<?> dataList);
 
     public static abstract class ViewHolder {
         public final View itemView;
