@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--colors from https://www.google.com/design/spec/style/color.html-->
+    <color name="blue_500">#2196F3</color>
+
+</resources>
