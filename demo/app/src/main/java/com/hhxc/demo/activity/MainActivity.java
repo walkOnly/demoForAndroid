@@ -19,7 +19,7 @@ public class MainActivity extends BaseActivity {
     public void onBackPressed() {
         long now = System.currentTimeMillis();
         if (now - mBackClickTime > 3000) {
-            Tip.show("再次点击后退键退出应用");
+            Tip.show("再按一次退出程序");
             mBackClickTime = now;
             return;
         } else {
