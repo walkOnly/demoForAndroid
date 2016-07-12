@@ -20,11 +20,8 @@ public class HttpClient {
     }
 
     public static void post(String url, RequestParams params, AsyncHttpResponseHandler handler) {
-        // 测试代码
-        if (Config.DEBUG) {
-            if (handler instanceof GsonResponseHandler) {
-                ((GsonResponseHandler) handler).setUrl(url);
-            }
+        if (handler instanceof GsonResponseHandler) {
+            ((GsonResponseHandler) handler).setUrl(url);
         }
 
         Log.e("HttpClient", "url: " + url + " " + params.toString());

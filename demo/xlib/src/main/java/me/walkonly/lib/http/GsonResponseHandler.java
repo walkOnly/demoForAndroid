@@ -236,9 +236,9 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
                 }
             }
 
-            throw e;
+            //throw e;
+            throw new JsonDataException(e.getMessage() + " " + url);
         }
-//        return null;
     }
 
 }
