@@ -22,6 +22,7 @@ import cz.msebera.android.httpclient.Header;
 import me.walkonly.lib.Config;
 import me.walkonly.lib.Constant;
 import me.walkonly.lib.activity.BaseActivity;
+import me.walkonly.lib.util.Tip;
 import me.walkonly.lib.util.Utils;
 import me.walkonly.lib.view.IProgressView;
 import me.walkonly.lib.view.ProgressViewHolder;
@@ -31,18 +32,25 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
     private static final String TAG = Constant.TAG_HTTP;
 
     private String url;
+
     private Type genericType;
     private Context context;
+    private boolean showFailView;
 
     private boolean isCancelled = false;
 
     public GsonResponseHandler() {
-        genericType = getGenericType();
+        this(null, false);
     }
 
     public GsonResponseHandler(Context context) {
-        this.context = context;
+        this(context, false);
+    }
+
+    public GsonResponseHandler(Context context, boolean showFailView) {
         genericType = getGenericType();
+        this.context = context;
+        this.showFailView = showFailView;
     }
 
     private Type getGenericType() {
@@ -108,7 +116,7 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
         }
 
         if (TextUtils.isEmpty(response)) {
-            failed("请求服务器内容为空");
+            bizFailed(1000, "服务器返回的内容为空");
             return;
         }
 
@@ -120,8 +128,7 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
             int status = jsonObject.getInt("code");
             String message = jsonObject.getString("message");
             if (status != 1) {
-                //failed(message);
-                bizFailed(status, message, response);
+                bizFailed(status, message);
             } else {
                 //Gson gson = new Gson();
                 //T obj = gson.fromJson(response, genericType);
@@ -130,22 +137,27 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            failed("Json exception: " + e.getMessage());
         }
     }
 
     @Override
     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
         Log.e(TAG, "onFailure(): statusCode = " + statusCode + " " + url);
-        failed("请求服务器失败");
+        networkFailed(statusCode + "");
     }
 
     public abstract void succeed(T obj);
 
-    public void failed(String error) {
-        Log.e(TAG, "failed(): " + error + " " + url);
+    public void bizFailed(int code, String msg) {
+        Log.e(TAG, "bizFailed(): code | msg = " + code + " " + msg + " " + url);
+        Tip.show("业务失败：" + code + " " + msg);
+    }
 
-        if (context != null && context instanceof IProgressView) {
+    public void networkFailed(String error) {
+        Log.e(TAG, "networkFailed(): error = " + error + " " + url);
+        Tip.show("联网失败：" + error);
+
+        if (context != null && context instanceof IProgressView && showFailView) {
             Utils.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -167,12 +179,7 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
         }
     }
 
-    public void bizFailed(int code, String msg, String response) {
-        Log.e(TAG, "bizFailed(): code | msg = " + code + " " + msg);
-        failed(msg);
-    }
-
-    // 失败后重试
+    // 网络失败后重试
     public void retryLoadData() {
         Log.e(TAG, "retryLoadData()");
     }
