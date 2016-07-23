@@ -116,7 +116,7 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
         }
 
         if (TextUtils.isEmpty(response)) {
-            bizFailed(1000, "服务器返回的内容为空");
+            bizFailed(1000, "服务器返回的内容为空", "");
             return;
         }
 
@@ -128,7 +128,7 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
             int status = jsonObject.getInt("code");
             String message = jsonObject.getString("message");
             if (status != 1) {
-                bizFailed(status, message);
+                bizFailed(status, message, response);
             } else {
                 //Gson gson = new Gson();
                 //T obj = gson.fromJson(response, genericType);
@@ -143,19 +143,19 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
     @Override
     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
         Log.e(TAG, "onFailure(): statusCode = " + statusCode + " " + url);
-        networkFailed(statusCode + "");
+        networkFailed(statusCode);
     }
 
     public abstract void succeed(T obj);
 
-    public void bizFailed(int code, String msg) {
+    public void bizFailed(int code, String msg, String response) {
         Log.e(TAG, "bizFailed(): code | msg = " + code + " " + msg + " " + url);
-        Tip.show("业务失败：" + code + " " + msg);
+        Tip.show(msg + " " + code);
     }
 
-    public void networkFailed(String error) {
-        Log.e(TAG, "networkFailed(): error = " + error + " " + url);
-        Tip.show("联网失败：" + error);
+    public void networkFailed(int statusCode) {
+        Log.e(TAG, "networkFailed(): " + statusCode + " " + url);
+        Tip.show("请求服务器失败：" + statusCode);
 
         if (context != null && context instanceof IProgressView && showFailView) {
             Utils.postDelayed(new Runnable() {
