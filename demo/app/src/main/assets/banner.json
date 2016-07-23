@@ -1,0 +1,23 @@
+﻿
+ {
+  "code": 1,
+  "message": "success",
+  "data": [
+    {
+      "bannerId": 1,
+      "name": "桃花源",
+      "imgUrl": "http://images.china.cn/attachement/jpg/site1000/20160413/8c89a590fb39187874fc29.jpg",
+      "imgAlt": "",
+      "redirectUrl": "http://photo.china.com.cn/2016-04/13/content_38237857.htm"
+    },
+
+    {
+      "bannerId": 2,
+      "name": "伐木工人",
+      "imgUrl": "http://images.china.cn/attachement/jpg/site1000/20160121/d43d7e14ddd1180a98c055.jpg",
+      "imgAlt": "",
+      "redirectUrl": "http://photo.china.com.cn/city/2016-01/21/content_37629675.htm"
+    }
+
+	]
+}
