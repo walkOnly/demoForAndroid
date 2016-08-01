@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
+import me.walkonly.lib.activity.BaseActivity;
 import me.walkonly.lib.annotation.FragmentAnnotationConfig;
 
 public abstract class BaseFragment extends Fragment {
@@ -67,6 +68,14 @@ public abstract class BaseFragment extends Fragment {
         if (bundle != null)
             intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    public void startActivityAndClearTask(Class<? extends Activity> clazz) {
+        ((BaseActivity) getActivity()).startActivityAndClearTask(clazz);
+    }
+
+    public void startActivityAndClearTask(Class<? extends Activity> clazz, Bundle bundle) {
+        ((BaseActivity) getActivity()).startActivityAndClearTask(clazz);
     }
 
 }

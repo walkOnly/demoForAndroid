@@ -1,5 +1,6 @@
 package me.walkonly.lib.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -20,6 +21,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
+import me.walkonly.lib.activity.BaseActivity;
 import me.walkonly.lib.view.ProgressViewHolder;
 
 public class Utils {
@@ -41,6 +43,10 @@ public class Utils {
         long current = System.currentTimeMillis();
         double r = Math.random() + 0.001;
         return (long) (current * r);
+    }
+
+    public static boolean isActivityDestroyed(Activity activity) {
+        return activity.isFinishing() || ((BaseActivity) activity).isActivityDestroyed();
     }
 
     /**
@@ -113,6 +119,11 @@ public class Utils {
             Picasso.with(context).load(url).into(imageView);
     }
 
+    public static void loadImageByUrl(Context context, ImageView imageView, String url, int placeholderResId) {
+        if (!TextUtils.isEmpty(url))
+            Picasso.with(context).load(url).placeholder(placeholderResId).into(imageView);
+    }
+
     public static void initProgressView(View progressView) {
         ProgressViewHolder vh = new ProgressViewHolder();
 //        vh.progressBar = (ProgressBar) progressView.findViewById(R.id.progress_bar);
@@ -120,6 +131,14 @@ public class Utils {
 //        vh.failView = progressView.findViewById(R.id.fail_view);
 
         progressView.setTag(vh);
+
+        // 拦截点击事件
+        progressView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("AAA", "onClick()");
+            }
+        });
     }
 
     public static void showProgressBar(View progressView) {

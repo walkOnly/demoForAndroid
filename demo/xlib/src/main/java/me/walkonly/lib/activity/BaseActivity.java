@@ -29,7 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private List<GsonResponseHandler> httpResponseHandler = new ArrayList<>();
 
     private ActivityAnnotationConfig annotationConfig;
-
+    private boolean isActivityDestroyed = false;
     private View defaultTitleBar;
 
     @Override
@@ -72,6 +72,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         ButterKnife.unbind(this);
 
+        isActivityDestroyed = true;
+
         super.onDestroy();
     }
 
@@ -83,6 +85,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         Intent intent = new Intent(this, clazz);
         if (bundle != null)
             intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    public void startActivityAndClearTask(Class<? extends Activity> clazz) {
+        startActivityAndClearTask(clazz, null);
+    }
+
+    public void startActivityAndClearTask(Class<? extends Activity> clazz, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
@@ -120,5 +132,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 //            setContentView(rootView);
 //        }
     }
+
+    public boolean isActivityDestroyed() { return isActivityDestroyed; }
 
 }
