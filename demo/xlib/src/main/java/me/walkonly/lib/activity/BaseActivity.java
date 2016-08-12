@@ -95,6 +95,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void startActivityAndClearTask(Class<? extends Activity> clazz, Bundle bundle) {
         Intent intent = new Intent(this, clazz);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (bundle != null)
+            intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    public void startActivityAndClearTop(Class<? extends Activity> clazz) {
+        startActivityAndClearTop(clazz, null);
+    }
+
+    public void startActivityAndClearTop(Class<? extends Activity> clazz, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        if (bundle != null)
+            intent.putExtras(bundle);
         startActivity(intent);
     }
 
@@ -134,5 +148,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public boolean isActivityDestroyed() { return isActivityDestroyed; }
+
+    public static void showView(View v) {
+        if (v != null)
+            v.setVisibility(View.VISIBLE);
+    }
+
+    public static void goneView(View v) {
+        if (v != null)
+            v.setVisibility(View.GONE);
+    }
 
 }

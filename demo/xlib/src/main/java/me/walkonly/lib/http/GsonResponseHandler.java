@@ -154,7 +154,7 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
     }
 
     public void networkFailed(int statusCode) {
-        Log.e(TAG, "networkFailed(): " + statusCode + " " + url);
+        //Log.e(TAG, "networkFailed(): " + statusCode + " " + url);
         Tip.show("请求服务器失败：" + statusCode);
 
         if (context != null && context instanceof IProgressView && showFailView) {
@@ -244,7 +244,9 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
             }
 
             //throw e;
-            throw new JsonDataException(e.getMessage() + " " + url);
+            throw new JsonDataException(e.getMessage()
+                    + " " + url + " " + str
+                    + " " + "LocalStorage.getPhone()");
         }
     }
 

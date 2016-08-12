@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.Date;
 import java.util.List;
 
 import me.walkonly.lib.activity.BaseActivity;
@@ -45,10 +46,6 @@ public class Utils {
         return (long) (current * r);
     }
 
-    public static boolean isActivityDestroyed(Activity activity) {
-        return activity.isFinishing() || ((BaseActivity) activity).isActivityDestroyed();
-    }
-
     /**
      * 判断字符串是否是整数
      */
@@ -59,6 +56,13 @@ public class Utils {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    /**
+     * 判断activity是否已销毁
+     */
+    public static boolean isActivityDestroyed(Activity activity) {
+        return activity.isFinishing() || ((BaseActivity) activity).isActivityDestroyed();
     }
 
     public static void setTextColor(TextView tv, int r, int g, int b) {
@@ -73,6 +77,11 @@ public class Utils {
 
     public static String genHttpTag(Object obj) {
         return obj.getClass().getSimpleName() + "_" + randomNumber();
+    }
+
+    // timestamp 单位：秒
+    public static Date getDateByPhpTimestamp(String timestamp) {
+        return new Date(Long.valueOf(timestamp) * 1000);
     }
 
     public static void setMoney(TextView textView, int money) {

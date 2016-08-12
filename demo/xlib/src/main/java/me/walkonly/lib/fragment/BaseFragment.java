@@ -60,14 +60,11 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void startActivity(Class<? extends Activity> clazz) {
-        startActivity(clazz, null);
+        ((BaseActivity) getActivity()).startActivity(clazz);
     }
 
     public void startActivity(Class<? extends Activity> clazz, Bundle bundle) {
-        Intent intent = new Intent(getActivity(), clazz);
-        if (bundle != null)
-            intent.putExtras(bundle);
-        startActivity(intent);
+        ((BaseActivity) getActivity()).startActivity(clazz, bundle);
     }
 
     public void startActivityAndClearTask(Class<? extends Activity> clazz) {
@@ -75,7 +72,25 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void startActivityAndClearTask(Class<? extends Activity> clazz, Bundle bundle) {
-        ((BaseActivity) getActivity()).startActivityAndClearTask(clazz);
+        ((BaseActivity) getActivity()).startActivityAndClearTask(clazz, bundle);
+    }
+
+    public void startActivityAndClearTop(Class<? extends Activity> clazz) {
+        ((BaseActivity) getActivity()).startActivityAndClearTop(clazz);
+    }
+
+    public void startActivityAndClearTop(Class<? extends Activity> clazz, Bundle bundle) {
+        ((BaseActivity) getActivity()).startActivityAndClearTop(clazz, bundle);
+    }
+
+    public static void showView(View v) {
+        if (v != null)
+            v.setVisibility(View.VISIBLE);
+    }
+
+    public static void goneView(View v) {
+        if (v != null)
+            v.setVisibility(View.GONE);
     }
 
 }
