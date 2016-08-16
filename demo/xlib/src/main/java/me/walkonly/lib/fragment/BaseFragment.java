@@ -18,8 +18,8 @@ import me.walkonly.lib.annotation.FragmentAnnotationConfig;
 public abstract class BaseFragment extends Fragment {
 
     private FragmentAnnotationConfig annotationConfig;
-
     private View rootView;
+    private boolean doSomethingWhenBackPressed;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,6 +81,18 @@ public abstract class BaseFragment extends Fragment {
 
     public void startActivityAndClearTop(Class<? extends Activity> clazz, Bundle bundle) {
         ((BaseActivity) getActivity()).startActivityAndClearTop(clazz, bundle);
+    }
+
+    public void onBackPressed() {
+
+    }
+
+    public boolean isDoSomethingWhenBackPressed() {
+        return doSomethingWhenBackPressed;
+    }
+
+    public void setDoSomethingWhenBackPressed(boolean doSomethingWhenBackPressed) {
+        this.doSomethingWhenBackPressed = doSomethingWhenBackPressed;
     }
 
     public static void showView(View v) {

@@ -15,6 +15,7 @@ import com.hhxc.demo.view.MyAppTitle;
 
 import butterknife.Bind;
 import me.walkonly.lib.activity.BaseActivity;
+import me.walkonly.lib.fragment.BaseFragment;
 import me.walkonly.lib.util.Utils;
 import me.walkonly.lib.view.IProgressView;
 
@@ -85,6 +86,16 @@ public class FragmentHostActivity extends BaseActivity implements IProgressView 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult(): requestCode = " + requestCode);
+    }
+
+    @Override
+    public void onBackPressed() {
+        BaseFragment fragment = (BaseFragment) getSupportFragmentManager().findFragmentById(R.id.container);
+        if (fragment == null || !fragment.isDoSomethingWhenBackPressed()) {
+            super.onBackPressed();
+        } else {
+            fragment.onBackPressed();
+        }
     }
 
     public static void startFragment(Context context, Class<? extends Fragment> clazz) {

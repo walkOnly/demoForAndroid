@@ -61,4 +61,14 @@ public abstract class BaseAdapterForRecyclerView<VH extends RecyclerView.ViewHol
         mOnItemClickListener = listener;
     }
 
+    public static void showView(View v) {
+        if (v != null)
+            v.setVisibility(View.VISIBLE);
+    }
+
+    public static void goneView(View v) {
+        if (v != null)
+            v.setVisibility(View.GONE);
+    }
+
 }
