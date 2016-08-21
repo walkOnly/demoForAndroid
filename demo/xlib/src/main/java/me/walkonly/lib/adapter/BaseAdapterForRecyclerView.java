@@ -10,13 +10,21 @@ import java.util.List;
 
 public abstract class BaseAdapterForRecyclerView<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected Context context;
-    protected List<?> dataList;
-    private OnItemClickListener mOnItemClickListener;
+    private Context context;
+    private List<?> dataList;
+    private BaseItemHandler itemHandler;
 
-    public BaseAdapterForRecyclerView(Context context, List<?> dataList) {
+    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            itemHandler.onItemClick(v, getAdapterPosition(), dataList);
+        }
+    };
+
+    public BaseAdapterForRecyclerView(Context context, List<?> dataList, BaseItemHandler itemHandler) {
         this.context = context;
         this.dataList = dataList;
+        this.itemHandler = itemHandler;
     }
 
     public void updateData(List<?> dataList) {
@@ -31,34 +39,14 @@ public abstract class BaseAdapterForRecyclerView<VH extends RecyclerView.ViewHol
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(getItemLayout(), parent, false);;
-        return onCreateViewHolder2(view);
+        View view = LayoutInflater.from(context).inflate(itemHandler.getItemLayout(), parent, false);
+        view.setOnClickListener(mOnClickListener);
+        return itemHandler.onCreateViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final VH viewHolder, final int position) {
-        onBindViewHolder2(viewHolder, position, dataList);
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null)
-                    mOnItemClickListener.onItemClick(viewHolder.itemView, position);
-            }
-        });
-    }
-
-    public abstract int getItemLayout();
-
-    public abstract VH onCreateViewHolder2(View view);
-
-    public abstract void onBindViewHolder2(VH viewHolder, int position, List<?> dataList);
-
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mOnItemClickListener = listener;
+    public void onBindViewHolder(VH viewHolder, int position) {
+        itemHandler.onBindViewHolder(viewHolder, position, dataList);
     }
 
 }
