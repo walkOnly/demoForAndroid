@@ -1,20 +1,18 @@
 package me.walkonly.lib.adapter;
 
-
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.List;
-
-public abstract class BaseItemHandler <VH extends RecyclerView.ViewHolder> implements OnItemClickListener {
+public abstract class BaseItemHandler <T, VH extends RecyclerView.ViewHolder> implements OnItemClickListener<T> {
 
     public abstract int getItemLayout();
 
     public abstract VH onCreateViewHolder(View view);
 
-    public abstract void onBindViewHolder(VH viewHolder, int position, List<?> dataList);
+    public abstract void onBindViewHolder(VH viewHolder, int position, T item);
 
     @Override
-    public void onItemClick(View view, int position, List<?> dataList) {
+    public void onItemClick(View view, int position, T item) {
         // 使用 RecyclerView 的时候需要实现此方法
     }
 

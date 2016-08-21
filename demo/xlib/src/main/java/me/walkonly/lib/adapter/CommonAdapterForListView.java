@@ -1,6 +1,7 @@
 package me.walkonly.lib.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,19 +9,19 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
-public abstract class BaseAdapterForListView<VH extends RecyclerView.ViewHolder> extends BaseAdapter {
+public final class CommonAdapterForListView<T, VH extends RecyclerView.ViewHolder> extends BaseAdapter {
 
     private Context context;
-    private List<?> dataList;
-    private BaseItemHandler itemHandler;
+    private List<T> dataList;
+    private BaseItemHandler<T, VH> itemHandler;
 
-    public BaseAdapterForListView(Context context, List<?> dataList, BaseItemHandler itemHandler) {
+    public CommonAdapterForListView(Context context, List<T> dataList, BaseItemHandler<T, VH> itemHandler) {
         this.context = context;
         this.dataList = dataList;
         this.itemHandler = itemHandler;
     }
 
-    public void updateData(List<?> dataList) {
+    public void updateData(List<T> dataList) {
         this.dataList = dataList;
         notifyDataSetChanged();
     }
@@ -52,7 +53,7 @@ public abstract class BaseAdapterForListView<VH extends RecyclerView.ViewHolder>
             viewHolder = (VH) convertView.getTag();
         }
 
-        itemHandler.onBindViewHolder(viewHolder, position, dataList);
+        itemHandler.onBindViewHolder(viewHolder, position, dataList.get(position));
 
         return convertView;
     }
