@@ -27,10 +27,8 @@ public class MyRadioGroup {
             RadioButton view = mViews[i];
             view.setTag(_KEY, Integer.valueOf(i));
             if (i == index) {
-                Log.e("AAA", "111");
                 view.setChecked(true);
             } else {
-                Log.e("AAA", "222");
                 view.setChecked(false);
             }
             view.setOnCheckedChangeListener(mListener);
