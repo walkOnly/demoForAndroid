@@ -128,9 +128,11 @@ public class Utils {
             Picasso.with(context).load(url).into(imageView);
     }
 
-    public static void loadImageByUrl(Context context, ImageView imageView, String url, int placeholderResId) {
+    public static void loadImageByUrl(Context context, ImageView imageView, String url, int defaultImg) {
         if (!TextUtils.isEmpty(url))
-            Picasso.with(context).load(url).placeholder(placeholderResId).into(imageView);
+            Picasso.with(context).load(url).placeholder(defaultImg).error(defaultImg).into(imageView);
+        else
+            imageView.setImageResource(defaultImg);
     }
 
     public static void initProgressView(View progressView) {
