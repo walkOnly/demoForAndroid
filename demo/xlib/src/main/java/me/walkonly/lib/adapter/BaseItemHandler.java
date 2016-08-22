@@ -16,4 +16,19 @@ public abstract class BaseItemHandler <T, VH extends RecyclerView.ViewHolder> im
         // 使用 RecyclerView 的时候需要实现此方法
     }
 
+    public static void showView(View v) {
+        if (v != null)
+            v.setVisibility(View.VISIBLE);
+    }
+
+    public static void hideView(View v) {
+        if (v != null)
+            v.setVisibility(View.INVISIBLE);
+    }
+
+    public static void goneView(View v) {
+        if (v != null)
+            v.setVisibility(View.GONE);
+    }
+
 }
