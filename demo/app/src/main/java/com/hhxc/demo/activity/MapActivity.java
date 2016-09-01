@@ -3,6 +3,8 @@ package com.hhxc.demo.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.amap.api.maps2d.AMap;
@@ -25,7 +27,7 @@ import me.walkonly.lib.annotation.C_Activity;
 public class MapActivity extends BaseActivity {
 
     public static final String LAT = "lat";
-    public static final String LON = "lon";
+    public static final String LNG = "lng";
     public static final String NAME = "name";
     public static final String ADDR = "address";
 
@@ -36,10 +38,20 @@ public class MapActivity extends BaseActivity {
     @Bind(R.id.address)
     TextView addressTV;
 
+    @Bind(R.id.view_empty_common)
+    LinearLayout emptyView;
+    @Bind(R.id.empty_img)
+    ImageView emptyImg;
+    @Bind(R.id.empty_text)
+    TextView emptyText;
+
     private AMap aMap;
 
     private double latitude;
     private double longitude;
+
+    private String strLat;
+    private String strLng;
     private String name;
     private String address;
 
@@ -50,10 +62,16 @@ public class MapActivity extends BaseActivity {
         mapView.onCreate(savedInstanceState);
 
         Bundle bundle = getIntent().getExtras();
-        latitude = Double.parseDouble(bundle.getString(LAT, "39.973373"));
-        longitude = Double.parseDouble(bundle.getString(LON, "116.492752"));
+        strLat = bundle.getString(LAT);
+        strLng = bundle.getString(LNG);
         name = bundle.getString(NAME);
         address = bundle.getString(ADDR);
+
+        // 测试代码
+//        strLat = "39.973373";
+//        strLng = "116.492752";
+//        name = "欢乐谷训练场地";
+//        address = "朝阳区酒仙桥东路10号";
 
         initView();
     }
@@ -83,13 +101,14 @@ public class MapActivity extends BaseActivity {
     }
 
     private void initView() {
-        initMap();
-
-        // test
-        if (TextUtils.isEmpty(name))
-            name = "欢乐谷训练场地";
-        if (TextUtils.isEmpty(address))
-            address = "朝阳区酒仙桥东路10号";
+        if (isValidLatLng(strLat, strLng)) {
+            latitude = Double.parseDouble(strLat);
+            longitude = Double.parseDouble(strLng);
+            initMap();
+        } else {
+            showView(emptyView);
+            emptyText.setText("无效的经纬度");
+        }
 
         nameTV.setText(name);
         addressTV.setText(address);
@@ -115,6 +134,16 @@ public class MapActivity extends BaseActivity {
     @OnClick(R.id.back)
     void goBack() {
         finish();
+    }
+
+    private boolean isValidLatLng(String lat, String lng) {
+        if (TextUtils.isEmpty(lat) || TextUtils.isEmpty(lng)) return false;
+
+        if ("0".equals(lat) || "0.0".equals(lat)) return false;
+
+        if ("0".equals(lng) || "0.0".equals(lng)) return false;
+
+        return true;
     }
 
 }

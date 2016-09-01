@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:background="@color/gray_theme"
     android:orientation="vertical"
     android:visibility="gone" >
 
@@ -11,7 +12,8 @@
         android:id="@+id/empty_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp" />
+        android:layout_marginTop="140dp"
+        android:src="@drawable/no_record" />
 
     <TextView
         android:id="@+id/empty_text"
@@ -20,6 +22,7 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:text="无数据"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="@color/hint_gray" />
 
 </LinearLayout>
