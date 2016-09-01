@@ -37,7 +37,8 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
     private Context context;
     private boolean showFailView;
 
-    private boolean isCancelled = false;
+    private int attachState = 0; // 0 未设置附属状态 1 已附属 2 不附属
+    private boolean isCancelled;
 
     public GsonResponseHandler() {
         this(null, false);
@@ -67,7 +68,13 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
     }
 
     public GsonResponseHandler attach(Activity activity) {
+        attachState = 1;
         ((BaseActivity) activity).addHttpResponseHandler(this);
+        return this;
+    }
+
+    public GsonResponseHandler dontAttachActivity() {
+        attachState = 2;
         return this;
     }
 
@@ -107,6 +114,12 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
 
     @Override
     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+        // 测试代码
+        if (Config.DEBUG) {
+            if (attachState == 0)
+                throw new RuntimeException("这个http请求未设置附属状态");
+        }
+
         String response = new String(responseBody);
 
         // 测试代码
@@ -143,6 +156,15 @@ public abstract class GsonResponseHandler<T> extends AsyncHttpResponseHandler {
     @Override
     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
         Log.e(TAG, "onFailure(): statusCode = " + statusCode + " " + url);
+
+        // 测试代码
+        if (Config.DEBUG) {
+//            if (url.equals(Api.HTTP_URL_POST_JD_ORDER_RESULT)) {
+//                onSuccess(200, null, "0".getBytes());
+//                return;
+//            }
+        }
+
         networkFailed(statusCode);
     }
 
