@@ -83,6 +83,11 @@ public abstract class BaseFragment extends Fragment {
         ((BaseActivity) getActivity()).startActivityAndClearTop(clazz, bundle);
     }
 
+    public void finish() {
+        if (getActivity() != null)
+            getActivity().finish();
+    }
+
     public void onBackPressed() {
 
     }
