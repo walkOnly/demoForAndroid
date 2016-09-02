@@ -15,6 +15,7 @@ import me.walkonly.xlib.R;
 public class MyImageView extends ImageView {
 
     private Context mContext;
+
     private int aspect_ratio_type; // 1:宽高比 2:高宽比
     private String aspect_ratio_value; // 这里用分数，不用小数。比如 360/480
     private int n1, n2;
