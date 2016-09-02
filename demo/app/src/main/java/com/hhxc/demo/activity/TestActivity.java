@@ -21,7 +21,8 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        //setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_test_1);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
     }
@@ -33,9 +34,9 @@ public class TestActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
     }
 
-    @OnClick({R.id.btn_1, R.id.btn_2, R.id.btn_3,
-              R.id.btn_4, R.id.btn_5, R.id.btn_6,
-              R.id.btn_7, R.id.btn_8, R.id.btn_9})
+//    @OnClick({R.id.btn_1, R.id.btn_2, R.id.btn_3,
+//              R.id.btn_4, R.id.btn_5, R.id.btn_6,
+//              R.id.btn_7, R.id.btn_8, R.id.btn_9})
     void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_1:
