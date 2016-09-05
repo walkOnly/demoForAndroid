@@ -67,14 +67,16 @@ public class Utils {
     }
 
     // 设置RecyclerView的分割线，在 onBindViewHolder 中调用
-    public static void setDividerForRecyclerView(RecyclerView.ViewHolder viewHolder, int position) {
+    public static void setDividerForRecyclerView(RecyclerView.ViewHolder viewHolder, int position, int margin) {
         View view = viewHolder.itemView;
         RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) view.getLayoutParams();
-        int margin = lp.bottomMargin;
-        if (position == 0)
-            lp.setMargins(0, margin, 0, margin);
-        else
-            lp.setMargins(0, 0, 0, margin);
+
+        int top = position == 0 ? margin : 0;
+        int bottom = margin;
+        int left = lp.leftMargin;
+        int right = lp.rightMargin;
+
+        lp.setMargins(left, top, right, bottom);
         view.setLayoutParams(lp);
     }
 
