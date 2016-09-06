@@ -9,11 +9,13 @@ public class MyTabHost {
     private static final int _KEY = R.id.default_title_bar;
 
     private View mViews[];
+    private int mLastTab;
     private int mCurrentTab;
     private OnTabChangeListener mOnTabChangeListener;
 
     public MyTabHost(View views[], int index, OnTabChangeListener l) {
         mViews = views;
+        mLastTab = -1;
         mCurrentTab = index;
         mOnTabChangeListener = l;
 
@@ -27,7 +29,7 @@ public class MyTabHost {
             view.setOnClickListener(mListener);
         }
 
-        mOnTabChangeListener.onTabChanged(index);
+        mOnTabChangeListener.onTabChanged(mLastTab, mCurrentTab);
     }
 
     private View.OnClickListener mListener = new View.OnClickListener() {
@@ -36,8 +38,9 @@ public class MyTabHost {
             int index = (Integer) v.getTag(_KEY);
 
             if (index == mCurrentTab) return;
+            mLastTab = mCurrentTab;
             mCurrentTab = index;
-            mOnTabChangeListener.onTabChanged(index);
+            mOnTabChangeListener.onTabChanged(mLastTab, mCurrentTab);
         }
     };
 
@@ -47,12 +50,16 @@ public class MyTabHost {
 
     public void setCurrentTab(int index) {
         if (index == mCurrentTab) return;
+        mLastTab = mCurrentTab;
         mCurrentTab = index;
-        mOnTabChangeListener.onTabChanged(index);
+        mOnTabChangeListener.onTabChanged(mLastTab, mCurrentTab);
     }
 
     public interface OnTabChangeListener {
-        void onTabChanged(int index);
+        /**
+         * oldIndex 第一次是 -1
+         */
+        void onTabChanged(int oldIndex, int newIndex);
     }
 
 }
