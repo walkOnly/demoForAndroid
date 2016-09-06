@@ -2,22 +2,23 @@ package me.walkonly.lib.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.GridView;
 import android.widget.ListView;
 
 /**
- * 让ListView嵌套于ScrollView时能正常显示
+ * 让GridView嵌套于ScrollView时能正常显示
  */
-public class ListViewForScrollView extends ListView {
+public class GridViewForScrollView extends GridView {
 
-    public ListViewForScrollView(Context context) {
+    public GridViewForScrollView(Context context) {
         super(context);
     }
 
-    public ListViewForScrollView(Context context, AttributeSet attrs) {
+    public GridViewForScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ListViewForScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GridViewForScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
