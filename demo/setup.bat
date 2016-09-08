@@ -3,8 +3,8 @@
 
 set ADB="C:\Android\SDK\platform-tools\adb.exe"
 
-set APK_DEBUG_PATH=".\app\build\outputs\apk\app-debug.apk"
-set APK_RELEASE_PATH=".\app\build\outputs\apk\app-release.apk"
+set APK_DEBUG_PATH=".\app\build\outputs\apk\app-update-debug.apk"
+set APK_RELEASE_PATH=".\app\build\outputs\apk\app-update-release.apk"
 
 if "%1"=="" goto setupDebug
 if "%1"=="0" goto setupDebug

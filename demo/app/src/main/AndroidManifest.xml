@@ -40,7 +40,14 @@
             <!--android:screenOrientation="portrait" />-->
 
 
-
+        <!-- UMENG -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="55b1e6bb67e58ef849000758" /> <!-- 友盟AppKey，需要修改 -->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+        <!-- UMENG -->
 
     </application>
 

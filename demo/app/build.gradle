@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+def final int buildAllFlavors = 0 // 0:"update", 1:all
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -11,12 +13,70 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
+
+    // 学员端和教练端的签名文件不一样
+    signingConfigs {
+        debug {
+            storeFile file("../excs.keystore")
+            // 按住shift: 1 2 3 4 5
+            storePassword "ecart!@#\$%"
+            keyAlias "excx"
+            keyPassword "ecart!@#\$%"
+        }
+
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file("../excs.keystore")
+            // 按住shift: 1 2 3 4 5
+            storePassword "ecart!@#\$%"
+            keyAlias "excx"
+            keyPassword "ecart!@#\$%"
         }
     }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            signingConfig signingConfigs.release
+
+            if (buildAllFlavors == 1) {
+                applicationVariants.all { variant ->
+                    variant.outputs.each { output ->
+                        def outputFile = output.outputFile
+                        if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                            def fileName = "hhxc_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                            output.outputFile = new File(outputFile.parent, fileName)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 多渠道打包
+    productFlavors {
+        update { } // 官网后台更新包
+
+        if (buildAllFlavors == 1) {
+            xiaomi { }
+            huawei { }
+            baidu { }
+            wandoujia { }
+            yingyongbao { }
+        }
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+}
+
+def releaseTime() {
+    //return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+    return new Date().format("MMdd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {
