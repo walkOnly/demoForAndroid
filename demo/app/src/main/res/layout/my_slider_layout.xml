@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        custom:indicator_visibility="visible"
+        custom:pager_animation_span="1000" />
+
+    <ImageView
+        android:id="@+id/default_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_default_banner" />
+
+</FrameLayout>

@@ -13,22 +13,6 @@ public class MyFragmentTabHost extends MyTabHost {
 
     public MyFragmentTabHost(AppCompatActivity activity, Fragment fragments[], View views[], int index, OnTabChangeListener l) {
         super(views, index, new MyListener(activity, fragments, l));
-        initFragments(activity, fragments);
-    }
-
-    private void initFragments(AppCompatActivity activity, Fragment fragments[]) {
-        if (fragments == null || fragments.length <= 1)
-            throw new IllegalArgumentException("fragments[]数据不对");
-
-        FragmentManager fragmentManager = activity.getSupportFragmentManager();
-
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        for (int i = 0; i < fragments.length; i++) {
-            Fragment f = fragments[i];
-            ft.add(f, i + "");
-            ft.hide(f);
-        }
-        ft.commitAllowingStateLoss(); // commit()
     }
 
     public interface OnTabChangeListener {
@@ -48,6 +32,8 @@ public class MyFragmentTabHost extends MyTabHost {
             this.activity = activity;
             this.fragments = fragments;
             this.listener = l;
+
+            initFragments(activity, fragments);
         }
 
         @Override
@@ -65,6 +51,21 @@ public class MyFragmentTabHost extends MyTabHost {
                 fragmentTransaction.hide(fragments[oldIndex]);
             fragmentTransaction.show(fragments[newIndex]);
             fragmentTransaction.commitAllowingStateLoss(); // commit()
+        }
+
+        private void initFragments(AppCompatActivity activity, Fragment fragments[]) {
+            if (fragments == null || fragments.length <= 1)
+                throw new IllegalArgumentException("fragments[]数据不对");
+
+            FragmentManager fragmentManager = activity.getSupportFragmentManager();
+
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            for (int i = 0; i < fragments.length; i++) {
+                Fragment f = fragments[i];
+                ft.add(f, i + "");
+                ft.hide(f);
+            }
+            ft.commitAllowingStateLoss(); // commit()
         }
 
     }

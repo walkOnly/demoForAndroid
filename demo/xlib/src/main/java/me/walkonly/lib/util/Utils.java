@@ -66,7 +66,7 @@ public class Utils {
         return activity.isFinishing() || ((BaseActivity) activity).isActivityDestroyed();
     }
 
-    // 设置RecyclerView的分割线，在 onBindViewHolder 中调用
+    // 设置RecyclerView的item间距，在 onBindViewHolder 中调用
     public static void setDividerForRecyclerView(RecyclerView.ViewHolder viewHolder, int position, int margin) {
         View view = viewHolder.itemView;
         RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) view.getLayoutParams();
