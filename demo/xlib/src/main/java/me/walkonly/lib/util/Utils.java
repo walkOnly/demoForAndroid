@@ -13,7 +13,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -63,7 +62,7 @@ public class Utils {
      * 判断activity是否已销毁
      */
     public static boolean isActivityDestroyed(Activity activity) {
-        return activity.isFinishing() || ((BaseActivity) activity).isActivityDestroyed();
+        return activity.isFinishing() || ((BaseActivity) activity).isDestroy_ed();
     }
 
     // 设置RecyclerView的item间距，在 onBindViewHolder 中调用

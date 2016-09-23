@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.umeng.analytics.MobclickAgent;
 
@@ -20,7 +18,6 @@ import java.util.List;
 import butterknife.ButterKnife;
 import me.walkonly.lib.annotation.ActivityAnnotationConfig;
 import me.walkonly.lib.http.GsonResponseHandler;
-import me.walkonly.xlib.R;
 
 // 框架实现细节：基类 + 注解
 
@@ -29,7 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private List<GsonResponseHandler> httpResponseHandler = new ArrayList<>();
 
     private ActivityAnnotationConfig annotationConfig;
-    private boolean isActivityDestroyed = false;
+    private boolean isDestroyed = false;
     private View defaultTitleBar;
 
     @Override
@@ -72,7 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         ButterKnife.unbind(this);
 
-        isActivityDestroyed = true;
+        isDestroyed = true;
 
         super.onDestroy();
     }
@@ -147,7 +144,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        }
     }
 
-    public boolean isActivityDestroyed() { return isActivityDestroyed; }
+    public boolean isDestroy_ed() { return isDestroyed; }
 
     public static void showView(View v) {
         if (v != null)
@@ -163,5 +160,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (v != null)
             v.setVisibility(View.GONE);
     }
+
+    //protected abstract void initView();
+    //protected abstract void initData();
+    // ...
 
 }
